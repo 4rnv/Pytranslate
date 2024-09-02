@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+    <title>Translate</title>
+</head>
+<body>
+<div id="container">
+    <form hx-post="/translate" hx-target="#result" id="trans_form">
+        <input type="text" name="query" placeholder="Enter text to translate" required/>
+        <select name="lang" required>
+            <option value="hi">Hindi</option>
+            <option value="bn">Bengali</option>
+            <option value="ta">Tamil</option>
+            <option value="mr">Marathi</option>
+            <option value="gu">Gujarati</option>
+            <option value="te">Telugu</option>
+        </select>
+        <button type="submit">Translate</button>
+    </form>
+    <div id="result"></div>
+</div>
+<script>
+    //there has to be a better way to do this
+    document.addEventListener('htmx:afterRequest', function(event) {
+        if (event.detail.xhr.response) {
+            const response = JSON.parse(event.detail.xhr.response);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<p>${response.translated_text}</p>
+                                   <a href="/download/${response.filename}" class="download-button">Download Document</a>`;
+        }
+    });
+</script>
+</body>
+</html>
