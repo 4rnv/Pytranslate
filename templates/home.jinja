@@ -10,7 +10,7 @@
 <body>
 <div id="container">
     <form hx-post="/translate" hx-target="#result" id="trans_form">
-        <input type="text" name="query" placeholder="Enter text to translate" required/>
+        <textarea name="query" placeholder="Enter text to translate" required></textarea>
         <select name="lang" required>
             <option value="hi">Hindi</option>
             <option value="bn">Bengali</option>
@@ -20,19 +20,8 @@
             <option value="te">Telugu</option>
         </select>
         <button type="submit">Translate</button>
+        <div id="result"></div>
     </form>
-    <div id="result"></div>
 </div>
-<script>
-    //there has to be a better way to do this
-    document.addEventListener('htmx:afterRequest', function(event) {
-        if (event.detail.xhr.response) {
-            const response = JSON.parse(event.detail.xhr.response);
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `<p>${response.translated_text}</p>
-                                   <a href="/download/${response.filename}" class="download-button">Download Document</a>`;
-        }
-    });
-</script>
 </body>
 </html>

@@ -13,7 +13,7 @@ def translate_post():
     userinput_lang = request.form['lang']
     translated_text, filename = translate(userinput_text,userinput_lang)
     #return translated_text
-    return {'translated_text': translated_text, 'filename': filename}
+    return f'''<a href="/download/{filename}" class="download-button">Download Document</a>'''
 
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
