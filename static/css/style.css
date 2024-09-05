@@ -1,9 +1,9 @@
 :root {
-    --accent: #0078d4;
-    --accentdark: #005a9e;
+    --accent: linear-gradient(90deg, rgb(59, 96, 152), rgb(63, 135, 208));
+    --accentdark: linear-gradient(90deg, rgb(51, 67, 130), rgb(41, 123, 182));
 }
 
-body, p, a {
+body, a {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
@@ -16,18 +16,23 @@ body, p, a {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #99dafd;
+    background: #e4f5ff;
 }
 
 form {
-    background-color: white;
+    background: linear-gradient(300deg, rgb(223, 239, 255), white);
     padding: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 10px 10px rgba(40, 154, 199, 0.3);
     transition: all 0.3s;
 }
 
 form:hover {
-    border-radius: 1rem 0;
+    border-radius: 2rem 0;
+}
+
+textarea {
+    background: transparent;
+    font-family: inherit;
 }
 
 input[type="text"], textarea, select, option {
@@ -45,7 +50,7 @@ input[type="text"]:focus, textarea:focus, select:focus {
 }
 
 a, button {
-    background-color: var(--accent);
+    background: var(--accent);
     color: white;
     border: none;
     padding: 10px;
@@ -56,13 +61,13 @@ a, button {
 }
 
 a:hover, button:hover {
-    background-color: var(--accentdark);
+    background: var(--accentdark);
     border-radius: 1rem 0;
 }
 
 #result {
     margin-top: 20px;
     font-size: 16px;
-    background-color: white;
+    background: white;
     font-family: 'Courier New', Courier, monospace;
 }
